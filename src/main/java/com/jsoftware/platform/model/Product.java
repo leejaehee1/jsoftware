@@ -1,7 +1,6 @@
-package com.jsoftware.platform.database.model;
+package com.jsoftware.platform.model;
 
 import lombok.*;
-import org.apache.ibatis.type.Alias;
 
 @NoArgsConstructor @RequiredArgsConstructor @Getter @Setter @ToString
 public class Product {

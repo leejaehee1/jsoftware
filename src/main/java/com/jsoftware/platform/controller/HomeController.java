@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 public class HomeController {
+
     @GetMapping("/home")
     public String findUid(HttpSession session) {
         return session.getId();

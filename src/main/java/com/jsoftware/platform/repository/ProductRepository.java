@@ -1,6 +1,6 @@
-package com.jsoftware.platform.database.repository;
+package com.jsoftware.platform.repository;
 
-import com.jsoftware.platform.database.model.Product;
+import com.jsoftware.platform.model.Product;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
