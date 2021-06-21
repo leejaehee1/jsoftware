@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class RedisController {
 
@@ -31,5 +33,10 @@ public class RedisController {
         ValueOperations<String, String> vop = redisTemplate.opsForValue();
         String value = vop.get(key);
         return new ResponseEntity<>(value, HttpStatus.OK);
+    }
+
+    @GetMapping("/getSessionId")
+    public String getSessionId(HttpSession session) {
+        return session.getId();
     }
 }
