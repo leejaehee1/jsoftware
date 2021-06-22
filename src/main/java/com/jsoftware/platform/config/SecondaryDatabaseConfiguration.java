@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Slf4j
 @Configuration
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/application.yml")
 public class SecondaryDatabaseConfiguration {
 
     @Bean(name = "secondaryHikariConfig")
@@ -26,7 +26,7 @@ public class SecondaryDatabaseConfiguration {
         return new HikariConfig();
     }
 
-    @Bean(name = "secondarySqlSessionFactory")
+    @Bean(name = "secondaryDataSource")
     public DataSource dataSource() {
         return new HikariDataSource(hikariConfig());
     }
