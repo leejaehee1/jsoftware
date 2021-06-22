@@ -1,5 +1,7 @@
 package com.jsoftware.platform.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @RestController
 public class RedisController {
 
@@ -28,6 +31,7 @@ public class RedisController {
         vop.set("green", "watermelon");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @GetMapping("/redisTest/{key}")
     public ResponseEntity<?> getRedisKey(@PathVariable String key) {
         ValueOperations<String, String> vop = redisTemplate.opsForValue();
@@ -39,4 +43,6 @@ public class RedisController {
     public String getSessionId(HttpSession session) {
         return session.getId();
     }
+
+
 }
