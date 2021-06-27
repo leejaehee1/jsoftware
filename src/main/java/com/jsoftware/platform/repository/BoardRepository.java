@@ -15,12 +15,12 @@ public class BoardRepository {
     public List<Board> createBySize(String size) {
         // DB 조회를 했다고 가정하여 카운트를 올린다.
         dbCount++;
-        ArrayList<Board> boards = new ArrayList<Board>();
+        ArrayList<Board> boards = new ArrayList<>();
         int count = Integer.parseInt(size);
 
 
         for (int i = 0; i < count; i++) {
-            boards.add(new Board(i + 0L, i + "번째 게시물", i + "번째 내용"));
+            boards.add(new Board((long) i, i + "번째 게시물", i + "번째 내용"));
         }
 
         return boards;

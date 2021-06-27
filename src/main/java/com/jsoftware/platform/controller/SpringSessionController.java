@@ -38,12 +38,12 @@ public class SpringSessionController {
         }
         messages.add(msg);
         request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-        return "redirect:/";
+        return "index";
     }
 
     @PostMapping("/destroy")
     public String destroySession(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:/";
+        return "index";
     }
 }

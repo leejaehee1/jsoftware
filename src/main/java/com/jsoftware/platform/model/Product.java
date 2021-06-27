@@ -6,6 +6,10 @@ import lombok.*;
 public class Product {
 
     private Long prodId;
-    @NonNull private String prodName;
-    @NonNull private int prodPrice;
+
+    @NonNull
+    private String prodName;
+
+    @NonNull
+    private int prodPrice;
 }

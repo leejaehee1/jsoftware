@@ -1,8 +1,9 @@
 package com.jsoftware.platform.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -13,17 +14,15 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
+@EnableCaching
+@AllArgsConstructor
 public class CacheConfig {
 
-    @Autowired
-    RedisConnectionFactory redisConnectionFactory;
+    final RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    ObjectMapper objectMapper;
+    final ObjectMapper objectMapper;
 
-    @Autowired
-    RedisConnectionFactory connectionFactory;
-
+    final RedisConnectionFactory connectionFactory;
 
     @Bean
     public CacheManager redisCacheManager() {
@@ -31,8 +30,7 @@ public class CacheConfig {
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
 
-        RedisCacheManager redisCacheManager = RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(connectionFactory).cacheDefaults(redisCacheConfiguration).build();
-        return redisCacheManager;
+        return RedisCacheManager.RedisCacheManagerBuilder.fromConnectionFactory(connectionFactory).cacheDefaults(redisCacheConfiguration).build();
     }
 
 }
